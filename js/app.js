@@ -52,16 +52,28 @@ function getElementValueByID(ID) {
   return elementField.value;
 }
 //Compare if the pin is correct ot not
+let count = 3;
 document.getElementById("verify-pin").addEventListener("click", function () {
   const typedFieldValue = getElementValueByID("typed-numbers");
   const pinFieldValue = getElementValueByID("display-pin");
+  if (pinFieldValue === "") {
+    return alert("Generate pin.");
+  } else if (typedFieldValue === "") {
+    return alert("Input pin.");
+  }
   if (typedFieldValue === pinFieldValue) {
     document.getElementById("pin-success").style.display = "block";
     document.getElementById("pin-failure").style.display = "none";
     console.log("correct pin");
-  } else {
+  } else if (typedFieldValue !== pinFieldValue && count > 0) {
     console.log("Incorrect pin");
     document.getElementById("pin-success").style.display = "none";
     document.getElementById("pin-failure").style.display = "block";
+    document.getElementById("count").innerText = count;
+    count--;
+    // console.log(count);
+  } else {
+    document.getElementById("count").innerText = "create new pin";
+    console.log(count, "exceed");
   }
 });
