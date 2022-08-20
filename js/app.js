@@ -16,6 +16,8 @@ function get4degitPin() {
 //set pin value
 function setInputValueByID(inputID, pin) {
   const inputField = document.getElementById(inputID);
+  inputField.removeAttribute("disabled");
+
   inputField.value = pin;
 }
 //Click the generate pin button
@@ -52,7 +54,7 @@ function getElementValueByID(ID) {
   return elementField.value;
 }
 //Compare if the pin is correct ot not
-let count = 3;
+let count = 2;
 document.getElementById("verify-pin").addEventListener("click", function () {
   const typedFieldValue = getElementValueByID("typed-numbers");
   const pinFieldValue = getElementValueByID("display-pin");
@@ -73,7 +75,6 @@ document.getElementById("verify-pin").addEventListener("click", function () {
     count--;
     // console.log(count);
   } else {
-    document.getElementById("count").innerText = "create new pin";
-    console.log(count, "exceed");
+    document.getElementById("count").innerText = 0;
   }
 });
