@@ -46,4 +46,22 @@ for (const button of buttons) {
     }
   });
 }
-//Compare
+//get element value by id
+function getElementValueByID(ID) {
+  const elementField = document.getElementById(ID);
+  return elementField.value;
+}
+//Compare if the pin is correct ot not
+document.getElementById("verify-pin").addEventListener("click", function () {
+  const typedFieldValue = getElementValueByID("typed-numbers");
+  const pinFieldValue = getElementValueByID("display-pin");
+  if (typedFieldValue === pinFieldValue) {
+    document.getElementById("pin-success").style.display = "block";
+    document.getElementById("pin-failure").style.display = "none";
+    console.log("correct pin");
+  } else {
+    console.log("Incorrect pin");
+    document.getElementById("pin-success").style.display = "none";
+    document.getElementById("pin-failure").style.display = "block";
+  }
+});
