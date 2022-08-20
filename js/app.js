@@ -15,7 +15,7 @@ function get4degitPin() {
 }
 //set pin value
 function setInputValueByID(inputID, pin) {
-  const inputField = document.getElementById("display-pin");
+  const inputField = document.getElementById(inputID);
   inputField.value = pin;
 }
 //Click the generate pin button
@@ -24,7 +24,17 @@ document.getElementById("generate-pin").addEventListener("click", function () {
   setInputValueByID("display-pin", pin);
 });
 
-//Click the calculator buttons
-document.getElementById("calculator").addEventListener("click", function () {
-  console.log("clicked");
-});
+//Click the calculator buttons with getElementsByClassName
+const buttons = document.getElementsByClassName("button");
+for (const button of buttons) {
+  button.addEventListener("click", function (value) {
+    const number = value.target.innerText;
+    if (isNaN(number)) {
+      console.log(number);
+    } else {
+      const newTypedNumber =
+        document.getElementById("typed-numbers").value + number;
+      setInputValueByID("typed-numbers", newTypedNumber);
+    }
+  });
+}
