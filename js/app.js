@@ -29,12 +29,21 @@ const buttons = document.getElementsByClassName("button");
 for (const button of buttons) {
   button.addEventListener("click", function (value) {
     const number = value.target.innerText;
+    const typedField = document.getElementById("typed-numbers");
+    const typedFieldValue = typedField.value;
     if (isNaN(number)) {
-      console.log(number);
+      if (number === "C") {
+        typedField.value = "";
+      } else if (number === "<") {
+        const convertToArray = typedFieldValue.split("");
+        convertToArray.pop();
+        const newTypedNumber = convertToArray.join("");
+        setInputValueByID("typed-numbers", newTypedNumber);
+      }
     } else {
-      const newTypedNumber =
-        document.getElementById("typed-numbers").value + number;
+      const newTypedNumber = typedFieldValue + number;
       setInputValueByID("typed-numbers", newTypedNumber);
     }
   });
 }
+//Compare
