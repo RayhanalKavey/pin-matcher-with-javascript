@@ -54,7 +54,7 @@ function getElementValueByID(ID) {
   return elementField.value;
 }
 //Compare if the pin is correct ot not
-let count = 2;
+let count = 4;
 document.getElementById("verify-pin").addEventListener("click", function () {
   const typedFieldValue = getElementValueByID("typed-numbers");
   const pinFieldValue = getElementValueByID("display-pin");
@@ -76,5 +76,7 @@ document.getElementById("verify-pin").addEventListener("click", function () {
     // console.log(count);
   } else {
     document.getElementById("count").innerText = 0;
+    document.getElementById("display-pin").value = "";
+    document.getElementById("typed-numbers").value = "";
   }
 });
